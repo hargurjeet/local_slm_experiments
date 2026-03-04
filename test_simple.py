@@ -93,13 +93,21 @@ def test_all_prompts(model_name):
         print(f"\n📈 AVERAGES for {model_name}:")
         print(f"  ⚡ Avg Speed: {results['averages']['avg_tokens_per_second']:.2f} tokens/sec")
         print(f"  🚀 Avg Latency: {results['averages']['avg_time_to_first_token_ms']:.2f}ms")
+        print(f"  ⏱️  Total Response: {results['averages']['avg_total_response_time_ms']:.2f}ms ({results['averages']['avg_total_response_time_ms']/1000:.2f}s)")
+        print(f"  📝 Avg Length: {results['averages']['avg_response_length_chars']:.0f} chars")
         
+        if results['summary']['failed_tests'] > 0:
+            print(f"  ⚠️  Failed tests: {results['summary']['failed_tests']}")
+
         print(f"\n📋 Individual test results:")
         for test_name, metrics in results['individual_results'].items():
             if 'error' in metrics:
                 print(f"  ❌ {test_name}: Failed - {metrics['error']}")
             else:
                 print(f"  ✅ {test_name}: {metrics['tokens_per_second']:.2f} tokens/sec")
+                print(f"     • Speed: {metrics['tokens_per_second']:.2f} tokens/sec")
+                print(f"     • First token: {metrics['time_to_first_token_ms']:.2f}ms")
+                print(f"     • Total time: {metrics['total_time_seconds']*1000:.2f}ms ({metrics['total_time_seconds']:.2f}s)")
         
         return results
     except Exception as e:

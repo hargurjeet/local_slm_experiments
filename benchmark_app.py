@@ -20,7 +20,7 @@ TEST_PROMPTS = {
 class BenchmarkRequest(BaseModel):
     model: str
     prompt: str
-    max_tokens: int = 100
+    max_tokens: int = 512
 
 class BenchmarkResponse(BaseModel):
     model: str
@@ -101,9 +101,19 @@ def list_models():
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/benchmark")
+
 def run_benchmark(request: BenchmarkRequest):
     """Run a single benchmark test"""
     try:
+        # Debug: print the entire request object
+        print(f"Received request: {request}")
+        print(f"Model from request: {request.model}")
+        print(f"Prompt from request: {request.prompt}")
+        
+        # Make sure model is not empty or "BenchmarkRequest"
+        if not request.model or request.model == "BenchmarkRequest":
+            raise HTTPException(status_code=400, detail="Invalid model name")
+        
         print(f"Running benchmark for model: {request.model}")
         print(f"Prompt: {request.prompt[:50]}...")
         
@@ -155,6 +165,8 @@ def run_benchmark(request: BenchmarkRequest):
             "response_length": len(response_text)
         }
         
+    except HTTPException:
+        raise
     except Exception as e:
         print(f"Error in benchmark: {e}")
         raise HTTPException(status_code=500, detail=f"Benchmark failed: {str(e)}")
@@ -178,17 +190,27 @@ def run_all_tests(model: str, max_tokens: int = 100):
     valid_results = [r for r in results.values() if 'error' not in r]
     if valid_results:
         avg_tps = sum(r['tokens_per_second'] for r in valid_results) / len(valid_results)
-        avg_latency = sum(r['time_to_first_token_ms'] for r in valid_results) / len(valid_results)
+        avg_first_token_latency = sum(r['time_to_first_token_ms'] for r in valid_results) / len(valid_results)
+        avg_total_latency = sum(r['total_time_seconds'] for r in valid_results) / len(valid_results) * 1000  # Convert to ms
+        avg_response_length = sum(r['response_length'] for r in valid_results) / len(valid_results)
     else:
         avg_tps = 0
-        avg_latency = 0
+        avg_first_token_latency = 0
+        avg_total_latency = 0
+        avg_response_length = 0
     
     return {
         "model": model,
         "individual_results": results,
         "averages": {
             "avg_tokens_per_second": avg_tps,
-            "avg_time_to_first_token_ms": avg_latency
+            "avg_time_to_first_token_ms": avg_first_token_latency,
+            "avg_total_response_time_ms": avg_total_latency,
+            "avg_response_length_chars": avg_response_length
+        },
+        "summary": {
+            "total_tests_run": len(valid_results),
+            "failed_tests": len(results) - len(valid_results)
         }
     }
 
