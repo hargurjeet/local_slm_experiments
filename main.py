@@ -2,6 +2,7 @@
 import requests
 import json
 import sys
+from pathlib import Path
 
 BASE_URL = "http://localhost:8000"
 
@@ -110,8 +111,12 @@ def compare_models():
                 print(f"  🚀 Lowest First Token Latency: {best_latency['model']} ({best_latency['first_token_ms']:.2f}ms)")
                 print(f"  ⏱️  Fastest Total Response: {best_total['model']} ({best_total['total_time_ms']:.2f}ms)")
                 
+                # Create results directory if it doesn't exist
+                results_dir = Path("results")
+                results_dir.mkdir(exist_ok=True)
+
                 # Save results to file
-                filename = f"model_comparison_{len(results)}_models.json"
+                filename = results_dir / f"model_comparison_{len(results)}_models.json"
                 with open(filename, 'w') as f:
                     json.dump(results, f, indent=2)
                 print(f"\n💾 Results saved to: {filename}")
@@ -183,7 +188,7 @@ if __name__ == "__main__":
         if sys.argv[1] == "--debug":
             debug_server_response()
         else:
-            # Command line usage: python model_comparison.py phi3:mini mistral:7b
+            # Command line usage: python main.py phi3:mini mistral:7b llama3.2
             models_to_compare = sys.argv[1:]
             quick_compare(models_to_compare)
     else:
