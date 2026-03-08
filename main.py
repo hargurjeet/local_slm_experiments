@@ -81,7 +81,7 @@ def compare_models():
                     "model": model,
                     "speed": result['averages']['avg_tokens_per_second'],
                     "first_token_ms": result['averages']['avg_time_to_first_token_ms'],
-                    "total_time_ms": result['averages']['avg_total_response_time_ms'],
+                    "total_time_ms": result['averages']['avg_total_response_time_seconds'] * 1000,
                     "response_length": result['averages']['avg_response_length_chars']
                 })
         
@@ -140,7 +140,7 @@ def quick_compare(models_list):
                 "model": model,
                 "speed": result['averages']['avg_tokens_per_second'],
                 "first_token_ms": result['averages']['avg_time_to_first_token_ms'],
-                "total_time_ms": result['averages']['avg_total_response_time_ms'],
+                "total_time_ms": result['averages']['avg_total_response_time_seconds'] * 1000,  # Convert to ms
                 "response_length": result['averages']['avg_response_length_chars']
             })
     

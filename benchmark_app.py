@@ -40,70 +40,43 @@ class GeneralResponse(BaseModel):
     confidence: float = Field(ge=0.0, le=1.0, default=1.0)
 
 # Enhanced test prompts with JSON schema instructions
+# Ultra-simple prompts for better JSON compliance
 TEST_PROMPTS = {
     "short": {
-        "prompt": """Respond with ONLY a valid JSON object. No other text, no markdown, no explanation.
-Required JSON format:
-{
-    "answer": "your answer here",
-    "confidence": 0.95
-}
+        "prompt": """Return ONLY this JSON object:
+{"answer": "4", "confidence": 1.0}
 
-Question: What is 2+2?""",
+Question: 2+2?""",
         "schema": GeneralResponse
     },
     "medium": {
-        "prompt": """Respond with ONLY a valid JSON object. No other text, no markdown, no explanation.
-Required JSON format:
-{
-    "answer": "your explanation here",
-    "confidence": 0.95
-}
+        "prompt": """Return ONLY this JSON format:
+{"answer": "your explanation", "confidence": 0.95}
 
-Explain machine learning in 2 paragraphs.""",
+Explain: What is machine learning?""",
         "schema": GeneralResponse
     },
     "long": {
-        "prompt": """Respond with ONLY a valid JSON object. No other text, no markdown, no explanation.
-Required JSON format:
-{
-    "title": "story title",
-    "characters": ["character1", "character2"],
-    "plot_summary": "brief summary",
-    "story": "the full story",
-    "moral": "optional moral"
-}
+        "prompt": """Return ONLY this JSON format:
+{"title": "title", "characters": ["name1", "name2"], "plot_summary": "summary", "story": "full story", "moral": "moral"}
 
-Write a very short story about a robot learning to paint.""",
+Write a 2-sentence story about a robot.""",
         "schema": StoryResponse
     },
-    "reasoning": {
-        "prompt": """Respond with ONLY a valid JSON object. No other text, no markdown, no explanation.
-Required JSON format:
-{
-    "question": "the question",
-    "answer": "final answer",
-    "reasoning_steps": ["step1", "step2", "step3"],
-    "final_conclusion": "conclusion"
-}
+#     "reasoning": {
+#         "prompt": """Return ONLY this JSON format:
+# {"question": "question", "answer": "answer", "reasoning_steps": ["step1", "step2"], "final_conclusion": "conclusion"}
 
-Solve: If a bat and ball cost $1.10, and bat costs $1 more than ball, how much is ball?""",
-        "schema": ReasoningResponse
-    },
-    "coding": {
-        "prompt": """Respond with ONLY a valid JSON object. No other text, no markdown, no explanation.
-Required JSON format:
-{
-    "function_name": "is_palindrome",
-    "code": "def is_palindrome(s):\\n    return s == s[::-1]",
-    "explanation": "explanation here",
-    "time_complexity": "O(n)",
-    "space_complexity": "O(1)"
-}
+# Problem: bat ($1.10) costs $1 more than ball. Find ball price.""",
+#         "schema": ReasoningResponse
+#     },
+#     "coding": {
+#         "prompt": """Return ONLY this JSON format:
+# {"function_name": "name", "code": "def name():\\n    pass", "explanation": "explanation", "time_complexity": "O(1)", "space_complexity": "O(1)"}
 
-Write a Python function to check if a string is a palindrome.""",
-        "schema": CodeResponse
-    }
+# Write function to check if number is even.""",
+#         "schema": CodeResponse
+#     }
 }
 
 # Request/Response models
@@ -146,13 +119,14 @@ def get_system_usage():
 def validate_json_response(response_text: str, schema_model: BaseModel) -> tuple[bool, Optional[Dict], Optional[str]]:
     """Strictly validate response - must be pure JSON, no extraction"""
     try:
+        print(f' Validating JSON response: - {response_text}')  # Print first 100 chars for debugging
         # Try to parse as JSON - if this fails, it's not valid JSON
         parsed = json.loads(response_text)
         
         # Validate against schema
         validated = schema_model(**parsed)
         
-        return True, validated.dict(), None
+        return True, validated.model_dump(), None
     except json.JSONDecodeError as e:
         return False, None, f"Invalid JSON (must be pure JSON, no markdown or extra text): {str(e)}"
     except ValidationError as e:
@@ -182,15 +156,15 @@ def run_model_with_retry(model: str, prompt: str, schema_model: BaseModel, max_t
             else:
                 # More strict reprompt on failure
                 retry_prompt = f"""
-Your previous response was not valid JSON.
-Error: {last_error}
+                Your previous response was not valid JSON.
+                Error: {last_error}
 
-You MUST respond with ONLY a valid JSON object. No markdown, no backticks, no additional text, no explanations.
-Just the raw JSON object.
+                You MUST respond with ONLY a valid JSON object. No markdown, no backticks, no additional text, no explanations.
+                Just the raw JSON object.
 
-Original instruction:
-{prompt}
-"""
+                Original instruction:
+                {prompt}
+                """
                 messages = [{'role': 'user', 'content': retry_prompt}]
             
             # Stream to measure first token
