@@ -83,7 +83,7 @@ Write a 2-sentence story about a robot.""",
 class BenchmarkRequest(BaseModel):
     model: str
     prompt: str
-    max_tokens: int = 512
+    max_tokens: int = 1024
     max_retries: int = 2
 
 class BenchmarkResponse(BaseModel):
@@ -266,7 +266,7 @@ def list_models():
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/benchmark/all-tests")
-def run_all_tests(model: str, max_tokens: int = 100, max_retries: int = 2):
+def run_all_tests(model: str, max_tokens: int = 1024, max_retries: int = 2):
     """Run all test prompts on a model with strict JSON validation"""
     results = {}
     validation_stats = {

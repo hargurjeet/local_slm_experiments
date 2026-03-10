@@ -15,7 +15,7 @@ def list_models():
         print(f"Error listing models: {e}")
         return []
 
-def test_single_model(model_name, max_tokens=150):
+def test_single_model(model_name, max_tokens=1024):
     """Run all tests on one model and return results"""
     print(f"  Testing {model_name}...")
     try:
