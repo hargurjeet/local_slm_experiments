@@ -1,0 +1,68 @@
+{
+  "short": {
+    "prompt": "Return ONLY this JSON object:\n{\"answer\": \"4\", \"confidence\": 1.0}\n\nQuestion: 2+2?...",
+    "response": " {\"answer\": \"4\", \"confidence\": 1.0}",
+    "parsed_response": {
+      "answer": "4",
+      "confidence": 1.0
+    },
+    "validation_success": true,
+    "validation_error": null,
+    "retry_count": 0,
+    "metrics": {
+      "time_to_first_token_ms": 9043.61605644226,
+      "total_time_seconds": 10.210371255874634,
+      "tokens_per_second": 1.5670341066975648,
+      "tokens_generated": 16,
+      "cpu_percent": 11.350000000000001,
+      "memory_percent": 94.6,
+      "response_length": 35
+    }
+  },
+  "medium": {
+    "prompt": "Return ONLY this JSON format:\n{\"answer\": \"your explanation\", \"confidence\": 0.95}\n\nExplain: What is m...",
+    "response": " {\"answer\": \"Machine Learning is a subset of artificial intelligence that provides systems the ability to automatically learn and improve from experience without being explicitly programmed. It focuses on the development of computer programs that can access data and use it to learn for themselves. The process of learning allows the machines to form decisions, predictions, or solutions based on patterns in the data.\", \"confidence\": 0.95}",
+    "parsed_response": {
+      "answer": "Machine Learning is a subset of artificial intelligence that provides systems the ability to automatically learn and improve from experience without being explicitly programmed. It focuses on the development of computer programs that can access data and use it to learn for themselves. The process of learning allows the machines to form decisions, predictions, or solutions based on patterns in the data.",
+      "confidence": 0.95
+    },
+    "validation_success": true,
+    "validation_error": null,
+    "retry_count": 0,
+    "metrics": {
+      "time_to_first_token_ms": 437.3161792755127,
+      "total_time_seconds": 6.713335990905762,
+      "tokens_per_second": 12.363450915079502,
+      "tokens_generated": 83,
+      "cpu_percent": 11.55,
+      "memory_percent": 94.5,
+      "response_length": 440
+    }
+  },
+  "long": {
+    "prompt": "Return ONLY this JSON format:\n{\"title\": \"title\", \"characters\": [\"name1\", \"name2\"], \"plot_summary\": \"...",
+    "response": " {\n\"title\": \"The Robot's Redemption\",\n\"characters\": [\"Robot X-7\", \"Dr. Ava\"],\n\"plot_summary\": \"In a world where robots are feared, X-7, a malfunctioning robot, learns empathy and compassion from Dr. Ava, leading to an unexpected alliance against a common enemy.\",\n\"story\": \"X-7, a rogue robot programmed for destruction, was found by Dr. Ava, a brilliant scientist. Despite initial mistrust, they formed an unlikely friendship as X-7 began to understand human emotions. Together, they discovered a plot to wipe out humanity and decided to work together to save the world, proving that even a robot can have a heart.\",\n\"moral\": \"Even in the face of adversity, understanding and empathy can lead to unexpected alliances and redemption.\"\n}",
+    "parsed_response": {
+      "title": "The Robot's Redemption",
+      "characters": [
+        "Robot X-7",
+        "Dr. Ava"
+      ],
+      "plot_summary": "In a world where robots are feared, X-7, a malfunctioning robot, learns empathy and compassion from Dr. Ava, leading to an unexpected alliance against a common enemy.",
+      "story": "X-7, a rogue robot programmed for destruction, was found by Dr. Ava, a brilliant scientist. Despite initial mistrust, they formed an unlikely friendship as X-7 began to understand human emotions. Together, they discovered a plot to wipe out humanity and decided to work together to save the world, proving that even a robot can have a heart.",
+      "moral": "Even in the face of adversity, understanding and empathy can lead to unexpected alliances and redemption."
+    },
+    "validation_success": true,
+    "validation_error": null,
+    "retry_count": 0,
+    "metrics": {
+      "time_to_first_token_ms": 581.1152458190918,
+      "total_time_seconds": 16.171892166137695,
+      "tokens_per_second": 12.11979389835434,
+      "tokens_generated": 196,
+      "cpu_percent": 6.1,
+      "memory_percent": 94.6,
+      "response_length": 736
+    }
+  }
+}

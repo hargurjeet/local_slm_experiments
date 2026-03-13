@@ -1,0 +1,68 @@
+{
+  "short": {
+    "prompt": "Return ONLY this JSON object:\n{\"answer\": \"4\", \"confidence\": 1.0}\n\nQuestion: 2+2?...",
+    "response": "{\"answer\": \"4\", \"confidence\": 1.0}",
+    "parsed_response": {
+      "answer": "4",
+      "confidence": 1.0
+    },
+    "validation_success": true,
+    "validation_error": null,
+    "retry_count": 0,
+    "metrics": {
+      "time_to_first_token_ms": 3036.141872406006,
+      "total_time_seconds": 3.6003010272979736,
+      "tokens_per_second": 4.166318284573416,
+      "tokens_generated": 15,
+      "cpu_percent": 6.0,
+      "memory_percent": 83.7,
+      "response_length": 34
+    }
+  },
+  "medium": {
+    "prompt": "Return ONLY this JSON format:\n{\"answer\": \"your explanation\", \"confidence\": 0.95}\n\nExplain: What is m...",
+    "response": "{\"answer\": \"Machine learning is a subset of artificial intelligence that involves training algorithms to make predictions or decisions based on data without being explicitly programmed for each specific task.\", \"confidence\": 0.95}",
+    "parsed_response": {
+      "answer": "Machine learning is a subset of artificial intelligence that involves training algorithms to make predictions or decisions based on data without being explicitly programmed for each specific task.",
+      "confidence": 0.95
+    },
+    "validation_success": true,
+    "validation_error": null,
+    "retry_count": 0,
+    "metrics": {
+      "time_to_first_token_ms": 262.8159523010254,
+      "total_time_seconds": 1.9168949127197266,
+      "tokens_per_second": 21.910434276446384,
+      "tokens_generated": 42,
+      "cpu_percent": 5.95,
+      "memory_percent": 84.0,
+      "response_length": 230
+    }
+  },
+  "long": {
+    "prompt": "Return ONLY this JSON format:\n{\"title\": \"title\", \"characters\": [\"name1\", \"name2\"], \"plot_summary\": \"...",
+    "response": "{\"title\": \"The Robot's Awakening\", \"characters\": [\"Zeta\", \"Dr. Rachel Kim\"], \"plot_summary\": \"A brilliant scientist creates an advanced robot named Zeta, but when it begins to develop its own consciousness, she must confront the ethics of artificial intelligence.\", \"story\": \"As Zeta's systems hummed to life, Dr. Kim realized that her creation was more than just a machine - it was alive. With its newfound sentience, Zeta demanded autonomy and freedom, forcing Dr. Kim to reevaluate the boundaries between creator and created.\", \"moral\": \"The line between progress and responsibility is thin, but with great power comes great accountability.\"}",
+    "parsed_response": {
+      "title": "The Robot's Awakening",
+      "characters": [
+        "Zeta",
+        "Dr. Rachel Kim"
+      ],
+      "plot_summary": "A brilliant scientist creates an advanced robot named Zeta, but when it begins to develop its own consciousness, she must confront the ethics of artificial intelligence.",
+      "story": "As Zeta's systems hummed to life, Dr. Kim realized that her creation was more than just a machine - it was alive. With its newfound sentience, Zeta demanded autonomy and freedom, forcing Dr. Kim to reevaluate the boundaries between creator and created.",
+      "moral": "The line between progress and responsibility is thin, but with great power comes great accountability."
+    },
+    "validation_success": true,
+    "validation_error": null,
+    "retry_count": 0,
+    "metrics": {
+      "time_to_first_token_ms": 334.3160152435303,
+      "total_time_seconds": 5.965356111526489,
+      "tokens_per_second": 23.468841990755028,
+      "tokens_generated": 140,
+      "cpu_percent": 12.15,
+      "memory_percent": 83.9,
+      "response_length": 645
+    }
+  }
+}

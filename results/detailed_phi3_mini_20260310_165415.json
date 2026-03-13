@@ -1,0 +1,62 @@
+{
+  "short": {
+    "prompt": "Return ONLY this JSON object:\n{\"answer\": \"4\", \"confidence\": 1.0}\n\nQuestion: 2+2?...",
+    "response": "",
+    "parsed_response": null,
+    "validation_success": false,
+    "validation_error": "Invalid JSON (must be pure JSON, no markdown or extra text): Expecting value: line 1 column 1 (char 0)",
+    "retry_count": 3,
+    "metrics": {
+      "time_to_first_token_ms": 88.31787109375,
+      "total_time_seconds": 0.08867001533508301,
+      "tokens_per_second": 0,
+      "tokens_generated": 1,
+      "cpu_percent": 11.9,
+      "memory_percent": 88.2,
+      "response_length": 0
+    }
+  },
+  "medium": {
+    "prompt": "Return ONLY this JSON format:\n{\"answer\": \"your explanation\", \"confidence\": 0.95}\n\nExplain: What is m...",
+    "response": "",
+    "parsed_response": null,
+    "validation_success": false,
+    "validation_error": "Invalid JSON (must be pure JSON, no markdown or extra text): Expecting value: line 1 column 1 (char 0)",
+    "retry_count": 3,
+    "metrics": {
+      "time_to_first_token_ms": 536.2758636474609,
+      "total_time_seconds": 0.5366418361663818,
+      "tokens_per_second": 0,
+      "tokens_generated": 1,
+      "cpu_percent": 2.95,
+      "memory_percent": 88.2,
+      "response_length": 0
+    }
+  },
+  "long": {
+    "prompt": "Return ONLY this JSON format:\n{\"title\": \"title\", \"characters\": [\"name1\", \"name2\"], \"plot_summary\": \"...",
+    "response": "{\n\"title\": \"The Robot's Dilemma\",\n\"characters\": [\"Robo, the service bot\", \"Human customer\"],\n\"plot_summary\": \"A human customer repeatedly asks for help from an overworked and tired service robot.\",\n\"story\": \"As a busy day at work comes to its peak, Robo finds itself inundated with requests. The Human Customer's persistent demands begin to wear on the already exhausted machine.\", \n\"moral\": \"The story teaches that understanding someone else\u2019s perspective can lead to better communication and cooperation.\"}",
+    "parsed_response": {
+      "title": "The Robot's Dilemma",
+      "characters": [
+        "Robo, the service bot",
+        "Human customer"
+      ],
+      "plot_summary": "A human customer repeatedly asks for help from an overworked and tired service robot.",
+      "story": "As a busy day at work comes to its peak, Robo finds itself inundated with requests. The Human Customer's persistent demands begin to wear on the already exhausted machine.",
+      "moral": "The story teaches that understanding someone else\u2019s perspective can lead to better communication and cooperation."
+    },
+    "validation_success": true,
+    "validation_error": null,
+    "retry_count": 0,
+    "metrics": {
+      "time_to_first_token_ms": 415.90237617492676,
+      "total_time_seconds": 5.626260280609131,
+      "tokens_per_second": 23.28367218478865,
+      "tokens_generated": 131,
+      "cpu_percent": 6.25,
+      "memory_percent": 88.1,
+      "response_length": 508
+    }
+  }
+}

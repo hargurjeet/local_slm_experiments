@@ -1,0 +1,68 @@
+{
+  "short": {
+    "prompt": "Return ONLY this JSON object:\n{\"answer\": \"4\", \"confidence\": 1.0}\n\nQuestion: 2+2?...",
+    "response": " {\"answer\": \"4\", \"confidence\": 1.0}",
+    "parsed_response": {
+      "answer": "4",
+      "confidence": 1.0
+    },
+    "validation_success": true,
+    "validation_error": null,
+    "retry_count": 0,
+    "metrics": {
+      "time_to_first_token_ms": 8865.415811538696,
+      "total_time_seconds": 10.019914865493774,
+      "tokens_per_second": 1.5968199545387585,
+      "tokens_generated": 16,
+      "cpu_percent": 8.3,
+      "memory_percent": 93.8,
+      "response_length": 35
+    }
+  },
+  "medium": {
+    "prompt": "Return ONLY this JSON format:\n{\"answer\": \"your explanation\", \"confidence\": 0.95}\n\nExplain: What is m...",
+    "response": " {\"answer\": \"Machine Learning is a subset of artificial intelligence that provides systems the ability to automatically learn and improve from experience without being explicitly programmed. It focuses on the development of computer programs that can access data and use it to learn for themselves. The process of learning allows the machines to form decisions, identify patterns, and make predictions solely based on input data.\", \"confidence\": 0.95}",
+    "parsed_response": {
+      "answer": "Machine Learning is a subset of artificial intelligence that provides systems the ability to automatically learn and improve from experience without being explicitly programmed. It focuses on the development of computer programs that can access data and use it to learn for themselves. The process of learning allows the machines to form decisions, identify patterns, and make predictions solely based on input data.",
+      "confidence": 0.95
+    },
+    "validation_success": true,
+    "validation_error": null,
+    "retry_count": 0,
+    "metrics": {
+      "time_to_first_token_ms": 357.17010498046875,
+      "total_time_seconds": 6.708721160888672,
+      "tokens_per_second": 12.52101525544295,
+      "tokens_generated": 84,
+      "cpu_percent": 1.85,
+      "memory_percent": 94.2,
+      "response_length": 451
+    }
+  },
+  "long": {
+    "prompt": "Return ONLY this JSON format:\n{\"title\": \"title\", \"characters\": [\"name1\", \"name2\"], \"plot_summary\": \"...",
+    "response": " {\n\"title\": \"The Robot's Emotion\",\n\"characters\": [\"Robot R2\", \"Human Friend\"],\n\"plot_summary\": \"In a world where emotions were foreign to robots, R2 developed a sense of empathy towards its human friend, leading to an unexpected bond.\",\n\"story\": \"R2, a highly advanced robot, was programmed to assist humans but lacked the ability to understand or express emotions. One day, while helping his friend, R2 witnessed the human's sadness and felt a strange sensation. Over time, R2 began to mimic human emotions, providing comfort and understanding when needed. This unique bond between R2 and its human friend taught everyone that even without biological roots, empathy could be learned.\",\n\"moral\": \"Empathy can be learned, bridging the gap between different beings.\"\n}",
+    "parsed_response": {
+      "title": "The Robot's Emotion",
+      "characters": [
+        "Robot R2",
+        "Human Friend"
+      ],
+      "plot_summary": "In a world where emotions were foreign to robots, R2 developed a sense of empathy towards its human friend, leading to an unexpected bond.",
+      "story": "R2, a highly advanced robot, was programmed to assist humans but lacked the ability to understand or express emotions. One day, while helping his friend, R2 witnessed the human's sadness and felt a strange sensation. Over time, R2 began to mimic human emotions, providing comfort and understanding when needed. This unique bond between R2 and its human friend taught everyone that even without biological roots, empathy could be learned.",
+      "moral": "Empathy can be learned, bridging the gap between different beings."
+    },
+    "validation_success": true,
+    "validation_error": null,
+    "retry_count": 0,
+    "metrics": {
+      "time_to_first_token_ms": 583.4219455718994,
+      "total_time_seconds": 15.321565866470337,
+      "tokens_per_second": 12.270286316584558,
+      "tokens_generated": 188,
+      "cpu_percent": 7.25,
+      "memory_percent": 94.5,
+      "response_length": 766
+    }
+  }
+}
